@@ -1,0 +1,6 @@
+# Gulp
+练习gulp-autoprefixer的用法
+
+Autoprefixer是一种后处理器（Postprocessor）。
+直接针对CSS本身来进行处理，不需要任何额外的语法。
+Autoprefixer会分析CSS代码，并且根据Can I Use所提供的资料来决定要加上哪些浏览器前缀，而你要做的事情就是把他加入自己的自动化开发工具中（比如Grunt或者Gulp），然后就可以直接使用W3C的标准来写CSS，不需要加上任何浏览器的私有前缀。
