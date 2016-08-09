@@ -1,2 +1,2 @@
 # Gulp
-练习Gulp
+练习使用Gulp
