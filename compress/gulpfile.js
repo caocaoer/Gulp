@@ -4,7 +4,7 @@ var gulp = require('gulp'),
     cssverison = require('gulp-make-css-url-version')*/;
 
 gulp.task('testCssMin', function (){
-    gulp.src('css/*.css')
+    gulp.src('src/css/*.css')
         .pipe(cleancss({
             advanced: false, //类型：Boolean 默认：true [是否开启高级优化（合并选择器等）]
             compatibility: true, //保留ie7及以下兼容写法 类型：String 默认：''or'*' [启用兼容模式； 'ie7'：IE7兼容模式，'ie8'：IE8兼容模式，'*'：IE9+兼容模式]
@@ -16,7 +16,7 @@ gulp.task('testCssMin', function (){
 });
 
 gulp.task('testJsMin', function(){
-    gulp.src('js/*.js')
+    gulp.src('src/js/*.js')
         .pipe(uglify())
         .pipe(gulp.dest('dist/js'));
 });
