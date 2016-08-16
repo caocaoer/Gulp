@@ -1,0 +1,18 @@
+{
+  "name": "compress",
+  "version": "1.0.0",
+  "description": "compress test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "caocao",
+  "license": "ISC",
+  "devDependencies": {
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-make-css-url-version": "^0.0.13",
+    "gulp-uglify": "^2.0.0"
+  }
+}
