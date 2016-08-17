@@ -1,11 +1,15 @@
 var gulp = require('gulp'),
     htmlMin = require('gulp-htmlmin'), //html压缩
     jsMin = require('gulp-uglify'), //js压缩
+//    jshint = require('gulp-jshint'), //js检测
     cssMin = require('gulp-clean-css'), //css压缩
+    imgMin = require('gulp-imagemin'), //img压缩
+    pngcrush = require('imagemin-pngcrush'),
     notify = require('gulp-notify'), //提示信息
     concat = require('gulp-concat'), //文件合并
     rename = require('gulp-rename'); //文件重命名
 
+//compress css
 gulp.task('testCssMin', function (){
     gulp.src('src/css/*.css')
         .pipe(concat('main.css'))
@@ -24,6 +28,14 @@ gulp.task('testCssMin', function (){
         }));
 });
 
+//gulp.task('testJsHint', function(){
+//    gulp.src('src/js/*.js')
+//    .pipe(jshint())
+//    .pipe(jshint.reporter('default'))
+//    .pipe(notify({ message: 'lint task ok' }));
+//});
+
+//compress js
 gulp.task('testJsMin', function(){
     gulp.src('src/js/*.js')
         .pipe(jsMin())
@@ -37,6 +49,7 @@ gulp.task('testJsMin', function(){
         }));
 });
 
+//compress html
 gulp.task('testHtmlMin', function(){
     gulp.src('src/*.html')
     .pipe(htmlMin({
@@ -47,3 +60,31 @@ gulp.task('testHtmlMin', function(){
         message: 'html task ok'
     }));
 });
+
+//compress img
+gulp.task('testImgMin', function(){
+    gulp.src('src/img/*')
+    .pipe(imgMin({
+        progressive: true,
+        svgoPlugins: [{removeViewBox: false}],
+        use: [pngcrush()]
+    }))
+    .pipe(gulp.dest('dist/img'))
+    .pipe(notify({
+        message: 'img task ok'
+    }));
+});
+
+gulp.task('default', function(){
+    gulp.run('testCssMin', 'testJsMin', 'testHtmlMin', 'testImgMin');
+    
+    //监听
+//    gulp.watch('src/*.html', function(){
+//        gulp.run('testHtmlMin');
+//    });
+    gulp.watch('src/*.html', ['testHtmlMin']);
+    gulp.watch('src/css/*.css', ['testCssMin']);
+    gulp.watch('src/js/*.js', ['testJsMin']);
+    gulp.watch('src/img/*', ['testImgMin']);
+});
+
