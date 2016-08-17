@@ -5,14 +5,15 @@ var gulp = require('gulp'),
     cssMin = require('gulp-clean-css'), //css压缩
     imgMin = require('gulp-imagemin'), //img压缩
     pngcrush = require('imagemin-pngcrush'),
+    del = require('del'), //删除文件
     notify = require('gulp-notify'), //提示信息
     concat = require('gulp-concat'), //文件合并
     rename = require('gulp-rename'); //文件重命名
 
 //compress css
 gulp.task('testCssMin', function (){
-    gulp.src('src/css/*.css')
-        .pipe(concat('main.css'))
+    return gulp.src('src/css/*.css')
+//        .pipe(concat('main.css'))
         .pipe(rename({
             suffix: '.min'
         }))
@@ -37,7 +38,7 @@ gulp.task('testCssMin', function (){
 
 //compress js
 gulp.task('testJsMin', function(){
-    gulp.src('src/js/*.js')
+    return gulp.src('src/js/*.js')
         .pipe(jsMin())
         .pipe(rename({
             suffix: '.min'
@@ -51,7 +52,7 @@ gulp.task('testJsMin', function(){
 
 //compress html
 gulp.task('testHtmlMin', function(){
-    gulp.src('src/*.html')
+    return gulp.src('src/*.html')
     .pipe(htmlMin({
         collapseWhitespace: true
     }))
@@ -63,7 +64,7 @@ gulp.task('testHtmlMin', function(){
 
 //compress img
 gulp.task('testImgMin', function(){
-    gulp.src('src/img/*')
+    return gulp.src('src/img/*')
     .pipe(imgMin({
         progressive: true,
         svgoPlugins: [{removeViewBox: false}],
@@ -75,7 +76,12 @@ gulp.task('testImgMin', function(){
     }));
 });
 
+//gulp.task('clean', function(cb){
+//    del(['dist/*'], cb);
+//});
+
 gulp.task('default', function(){
+//    gulp.start('testCssMin', 'testJsMin', 'testHtmlMin', 'testImgMin');
     gulp.run('testCssMin', 'testJsMin', 'testHtmlMin', 'testImgMin');
     
     //监听
