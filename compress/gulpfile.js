@@ -4,6 +4,7 @@ var gulp = require('gulp'),
 //    jshint = require('gulp-jshint'), //js检测
     cssMin = require('gulp-clean-css'), //css压缩
     imgMin = require('gulp-imagemin'), //img压缩
+    
     pngcrush = require('imagemin-pngcrush'),
     del = require('del'), //删除文件
     notify = require('gulp-notify'), //提示信息
