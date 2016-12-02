@@ -1,0 +1,8 @@
+{
+  "development": {
+    "apiUrl": "http://dev.applicationName.com/api/projectName/"
+  },
+  "production": {
+    "apiUrl": "http://applicationName.com/api/projectName/"
+  }
+}

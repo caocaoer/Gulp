@@ -1,0 +1,1 @@
+appconfig = {"apiUrl":"http://applicationName.com/api/projectName/"}
